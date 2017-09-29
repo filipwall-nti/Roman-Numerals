@@ -19,7 +19,28 @@ namespace Roman_numerals
 
         private void btnConvert_Click(object sender, EventArgs e)
         {
+            int number = int.Parse(tbxNumbers.Text);
+            ConvertNumberToRoman(number);
+            tbxRoman.Text = ConvertNumberToRoman(number);
+        }
 
+        public string ConvertNumberToRoman(int number)
+        {
+            if (number >= 1000)
+            {
+                return "M" + ConvertNumberToRoman(number - 1000);
+            }
+
+            if (number >= 900)
+            {
+                
+            }
+
+            if (number == 0)
+            {
+                return "";
+            }
+            return number.ToString();
         }
     }
 }
