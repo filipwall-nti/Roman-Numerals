@@ -19,15 +19,22 @@ namespace Roman_numerals
 
         private void btnConvert_Click(object sender, EventArgs e)
         {
-            int number = int.Parse(tbxNumbers.Text);
-            ConvertNumberToRoman(number);
-            tbxRoman.Text = ConvertNumberToRoman(number);
+            if (tbxNumbers.Text.All(c => char.IsNumber(c)))
+            {
+                var number = int.Parse(tbxNumbers.Text);
+                ConvertNumberToRoman(number);
+                tbxRoman.Text = ConvertNumberToRoman(number);
+            }
+            else
+            {
+                MessageBox.Show("Insert a NUMBER between 1-3999, which is not a deciaml!");
+            }
         }
 
         public string ConvertNumberToRoman(int number)
         {
             if (number >= 4000)
-                return "Insert a number between 1-3999" + ConvertNumberToRoman(number - number);
+                return "Insert a number between 1-3999";
 
             if (number < 0)
                 return "Insert a number between 1-3999";
@@ -116,10 +123,7 @@ namespace Roman_numerals
             if (number >= 1)
                 return "I" + ConvertNumberToRoman(number - 1);
 
-            if (number == 0)
-                return "";
-
-            return number.ToString();
+            return number == 0 ? "" : number.ToString();
         }
     }
 }
